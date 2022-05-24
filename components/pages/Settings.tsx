@@ -30,7 +30,7 @@ const Settings = () => {
             <IonLabel>Enable Notifications</IonLabel>
             <IonToggle
               checked={settings.enableNotifications}
-              onIonChange={e => {
+              onIonChange={(e: any) => {
                 setSettings({
                   ...settings,
                   enableNotifications: e.target.checked,
