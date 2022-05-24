@@ -17,6 +17,10 @@ window.matchMedia('(prefers-color-scheme: dark)').addListener(async status => {
   } catch {}
 });
 
+import { setupIonicReact } from '@ionic/react';
+
+setupIonicReact();
+
 const AppShell = () => {
   const fetcher = (...args) =>
     fetch(...args, {
