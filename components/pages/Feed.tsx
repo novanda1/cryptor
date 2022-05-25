@@ -1,8 +1,14 @@
-import { IonContent, IonPage } from '@ionic/react';
+import { IonAvatar, IonContent, IonPage, IonSlide, IonSlides } from '@ionic/react';
+import Image from 'next/image';
 import useTopGainer from '../../hooks/useTopGainer';
+import Avatar from 'react-avatar';
 
 const Feed = () => {
-  const { isError, isLoading, topGainer } = useTopGainer();
+  const { isError, isLoading, trending } = useTopGainer();
+
+  const slideOpts = {
+    slidesPerView: 3.8,
+  };
 
   return (
     <IonPage>
@@ -21,13 +27,26 @@ const Feed = () => {
 
           <div
             style={{ top: 'calc(100% - 40px)' }}
-            className="absolute bg-white text-black rounded-xl w-4/5 p-3"
+            className="absolute bg-white text-black rounded-xl w-4/5 p-3 overflow-hidden"
           >
-            <h2 className="font-medium text-sm">Biggest Gainer</h2>
-            {JSON.stringify(topGainer)}
-            {isLoading ?"loading" :"asd"}
-            {JSON.stringify(isError)}
+            <h2 className="font-medium text-sm">Trending</h2>
+            <div className="flex"></div>
           </div>
+        </div>
+        <div className="px-4 mx-auto">
+          <h3 className="mt-10 text-lg font-medium mb-3">Wishlist</h3>
+          <IonSlides pager={false} options={slideOpts} style={{ margin: '0 -0.75rem' }}>
+            {trending &&
+              trending.coins.map(t => {
+                return (
+                  <IonSlide key={t.item.coin_id}>
+                    <div className="rounded-full border-2 border-red-500 p-1">
+                      <Avatar round={true} src={t.item.large} size="60px" />
+                    </div>
+                  </IonSlide>
+                );
+              })}
+          </IonSlides>
         </div>
       </IonContent>
     </IonPage>

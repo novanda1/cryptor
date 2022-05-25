@@ -1,8 +1,8 @@
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import Menu from './Menu';
 import Tabs from './pages/Tabs';
 
 window.matchMedia('(prefers-color-scheme: dark)').addListener(async status => {
@@ -14,21 +14,20 @@ window.matchMedia('(prefers-color-scheme: dark)').addListener(async status => {
 });
 
 setupIonicReact();
-const AppShell = () => {
-  
-
+const AppShell: React.FC<any> = ({ children }) => {
   return (
     <IonApp>
-      
-        <IonReactRouter>
-          <IonSplitPane contentId="main">
-            <Menu />
-            <IonRouterOutlet id="main">
-              <Route path="/tabs" render={() => <Tabs />} />
-              <Route exact path="/" render={() => <Redirect to="/tabs" />} />
-            </IonRouterOutlet>
-          </IonSplitPane>
-        </IonReactRouter>
+      {/*
+ // @ts-ignore */}
+      <IonReactRouter>
+        <IonSplitPane contentId="main">
+          <IonRouterOutlet id="main">
+            <Route path="/tabs" render={() => <Tabs />} />
+            <Route exact path="/" render={() => <Redirect to="/tabs" />} />
+          </IonRouterOutlet>
+        </IonSplitPane>
+        {children}
+      </IonReactRouter>
     </IonApp>
   );
 };

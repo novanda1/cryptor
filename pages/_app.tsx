@@ -17,6 +17,7 @@ import 'tailwindcss/tailwind.css';
 import '../styles/global.css';
 import '../styles/variables.css';
 import { SWRConfig } from 'swr';
+import { fetcher } from '../lib/cmc-fetcher';
 
 function MyApp({ Component, pageProps }) {
   return (

@@ -1,7 +1,7 @@
 module.exports = {
   basePath: '',
   images: {
-    domains: ['images.unsplash.com'],
+    domains: ['images.unsplash.com', 'assets.coingecko.com'],
   },
   async redirects() {
     return [
