@@ -5,8 +5,8 @@ type Props = {
   children?: React.ReactNode;
 };
 
-const Px: React.FC<Props> = ({ size, children }) => {
+const PX: React.FC<Props> = ({ size, children }) => {
   return <div className={'px-' + size}>{children}</div>;
 };
 
-export default Px;
+export default PX;
