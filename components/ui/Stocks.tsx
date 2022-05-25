@@ -8,7 +8,7 @@ const Stocks: React.FC<any> = () => {
 
   return (
     <>
-      <h3 className="mt-10 text-lg font-medium mb-3">Stocks</h3>
+      <h3 className="mt-7 text-lg font-medium mb-3">Stocks</h3>
 
       <div>
         <div className="flex flex-col">
@@ -18,7 +18,7 @@ const Stocks: React.FC<any> = () => {
               const price_change_percentage_24h_in_currency =
                 coin.price_change_percentage_24h_in_currency.toFixed(2);
               return (
-                <div className="flex flex-row mb-4" key={coin.id}>
+                <div className="flex flex-row py-3 border-b border-opacity-80 border-gray-100 last:border-0" key={coin.id}>
                   <Avatar round={true} src={coin.image} size="40px" />
                   <div className="flex flex-col items-start justify-center ml-3">
                     <h4 className="block">{coin.name}</h4>
