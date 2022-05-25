@@ -16,7 +16,10 @@ const Feed = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-        <div className="relative pt-10 pb-16 bg-gray-900 flex flex-col items-center justify-center">
+        <div
+          className="relative pt-10 pb-16 bg-gray-900 flex flex-col items-center justify-center"
+          style={{ marginTop: 'var(--safe-area-top)' }}
+        >
           <h1 className="text-xl font-bold">Hey Novanda!</h1>
           <p className=" text-xs mt-1">Ready to be a Cryptor?</p>
 
@@ -39,12 +42,42 @@ const Feed = () => {
         <div className="px-4 mx-auto">
           <h3 className="mt-10 text-lg font-medium mb-3">Wishlist</h3>
           <IonSlides pager={false} options={slideOpts} style={{ margin: '0 -0.75rem' }}>
-            {trending &&
-              trending.coins.map(t => {
+            {market &&
+              market.map(coin => {
+                const price_change_percentage_24h_in_currency =
+                  coin.price_change_percentage_24h_in_currency.toFixed(2);
                 return (
-                  <IonSlide key={t.item.coin_id}>
-                    <div className="rounded-full border-2 border-red-500 p-1">
-                      <Avatar round={true} src={t.item.large} size="60px" />
+                  <IonSlide key={coin.id}>
+                    <div className="">
+                      <div className="rounded-full border-2 border-red-500 p-1">
+                        <Avatar round={true} src={coin.image} size="60px" />
+                      </div>
+                      <h5 className="text-gray-500 mt-1">{coin.symbol.toUpperCase()}</h5>
+
+                      <div className="flex items-center">
+                        <span
+                          className={
+                            coin.price_change_percentage_24h_in_currency > 0
+                              ? 'text-green-500'
+                              : 'text-red-500'
+                          }
+                        >
+                          {coin.price_change_percentage_24h_in_currency > 0 ? (
+                            <FiArrowUpRight />
+                          ) : (
+                            <FiArrowDownRight />
+                          )}
+                        </span>
+                        <span
+                          className={
+                            coin.price_change_percentage_24h_in_currency > 0
+                              ? 'text-green-500'
+                              : 'text-red-500'
+                          }
+                        >
+                          {price_change_percentage_24h_in_currency.replace('-', '') + '%'}
+                        </span>
+                      </div>
                     </div>
                   </IonSlide>
                 );

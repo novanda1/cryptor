@@ -6,7 +6,7 @@
   --safe-area-left: env(safe-area-inset-left, 0);
   --safe-area-right: env(safe-area-inset-right, 0);
 
-  --ion-font-family: 'Plus Jakarta Sans', sans-serif;
+  --ion-font-family: 'serif', 'Plus Jakarta Sans', sans-serif;
 }
 body {
   overflow: hidden;
