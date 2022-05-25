@@ -15,7 +15,7 @@ const TrendingItems: React.FC<Props> = ({ trending }) => {
         return (
           <div key={item.coin_id}>
             <h3>{item.symbol.toUpperCase()}</h3>
-            <div className="flex items-center text-sm">
+            <div className="flex items-center">
               <span
                 className={
                   simplePrice && simplePrice[item.id].usd_24h_change > 0

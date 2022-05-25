@@ -37,7 +37,7 @@ const HeroLayout: React.FC = () => {
             }}
             className="absolute bg-white text-black rounded-lg right-4 left-4 p-4 overflow-hidden"
           >
-            <h2 className="font-bold text-sm">Trending</h2>
+            <h2 className="text-lg font-medium">Trending</h2>
 
             <div className="flex justify-between mt-4">
               <TrendingItems trending={trending} />
