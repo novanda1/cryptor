@@ -1,12 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
+import useTrending from '../../hooks/useTrending';
+import TrendingItems from './TrendingItems';
 
 const HeroLayout: React.FC = () => {
   const elementRef = useRef<HTMLDivElement>();
   const [marginBottom, setMarginBottom] = useState<number>(0);
 
+  const { isError, isLoading, trending } = useTrending();
+
   useEffect(() => {
     setMarginBottom(elementRef.current.clientHeight + 20);
-  }, [elementRef]);
+  }, [elementRef, trending]);
 
   return (
     <>
@@ -28,10 +32,13 @@ const HeroLayout: React.FC = () => {
           <div
             ref={elementRef}
             style={{ top: 'calc(100% + 47px)' }}
-            className="absolute bg-white text-black rounded-xl w-4/5 p-3 overflow-hidden"
+            className="absolute bg-white text-black rounded-lg w-4/5 p-3 overflow-hidden"
           >
-            <h2 className="font-medium text-sm">Trending</h2>
-            <div className="flex"></div>
+            <h2 className="font-bold text-sm">Trending</h2>
+
+            <div className="flex justify-between mt-4">
+              <TrendingItems trending={trending} />
+            </div>
           </div>
         </div>
       </div>
