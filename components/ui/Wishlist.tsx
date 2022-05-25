@@ -8,14 +8,15 @@ const slideOpts = {
 };
 
 const WishList: React.FC<any> = () => {
-  const { isError: marketIsError, isLoading: marketIsLoading, market } = useMarket();
+  const { isLoading, market } = useMarket();
 
   return (
     <>
       <h3 className="mt-10 text-lg font-medium mb-3">Wishlist</h3>
-      <IonSlides pager={false} options={slideOpts} style={{ margin: '0 -0.75rem' }}>
-        {market &&
-          market.map(coin => {
+      {isLoading && 'Loading...'}
+      {market && (
+        <IonSlides pager={false} options={slideOpts} style={{ margin: '0 -0.75rem' }}>
+          {market.map(coin => {
             const price_change_percentage_24h_in_currency =
               coin.price_change_percentage_24h_in_currency.toFixed(2);
             return (
@@ -54,7 +55,8 @@ const WishList: React.FC<any> = () => {
               </IonSlide>
             );
           })}
-      </IonSlides>
+        </IonSlides>
+      )}
     </>
   );
 };
