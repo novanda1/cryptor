@@ -25,6 +25,8 @@ const Feed = () => {
           >
             <h2 className="font-medium text-sm">Biggest Gainer</h2>
             {JSON.stringify(topGainer)}
+            {isLoading ?"loading" :"asd"}
+            {JSON.stringify(isError)}
           </div>
         </div>
       </IonContent>

@@ -1,8 +1,8 @@
 import useSWR from 'swr';
-import { API_URL } from '../lib/constants';
+import { fetcher } from '../lib/cmc-fetcher';
 
 function useTopGainer() {
-  const { data, error } = useSWR(API_URL + '/v1/cryptocurrency/trending/gainers-losers');
+  const { data, error } = useSWR('/api/cmc/v1/cryptocurrency/trending/gainers-losers', fetcher)
 
   return {
     topGainer: data,

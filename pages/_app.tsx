@@ -16,6 +16,8 @@ import '@ionic/react/css/typography.css';
 import 'tailwindcss/tailwind.css';
 import '../styles/global.css';
 import '../styles/variables.css';
+import { SWRConfig } from 'swr';
+import { fetcher } from '../lib/cmc-fetcher';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -26,7 +28,15 @@ function MyApp({ Component, pageProps }) {
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         ></meta>
       </Head>
-      <Component {...pageProps} />
+      <SWRConfig
+        value={{
+          revalidateIfStale: false,
+          revalidateOnFocus: false,
+          revalidateOnReconnect: false,
+        }}
+      >
+        <Component {...pageProps} />
+      </SWRConfig>
     </>
   );
 }
