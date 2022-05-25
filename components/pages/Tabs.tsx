@@ -1,5 +1,7 @@
 import { IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
 import { cog, home, list, person } from 'ionicons/icons';
+import { FiActivity, FiHome, FiSearch, FiUser } from 'react-icons/fi';
+import { RiMoneyDollarBoxLine } from 'react-icons/ri';
 import { Redirect, Route } from 'react-router-dom';
 
 import Home from './Feed';
@@ -19,17 +21,23 @@ const Tabs = () => {
       </IonRouterOutlet>
       <IonTabBar
         slot="bottom"
-        className="bg-transparent"
+        className="bg-transparent h-16"
         style={{ boxShadow: '0px -20px 50px rgba(155, 155, 155, 0.1)' }}
       >
         <IonTabButton className="bg-transparent" tab="tab1" href="/tabs/feed">
-          <IonIcon icon={home} />
+          <FiHome width={24} height={24} style={{ width: 24, height: 24 }} />
         </IonTabButton>
         <IonTabButton className="bg-transparent" tab="tab2" href="/tabs/lists">
-          <IonIcon icon={list} />
+          <FiActivity width={24} height={24} style={{ width: 24, height: 24 }} />
         </IonTabButton>
         <IonTabButton className="bg-transparent" tab="tab3" href="/tabs/settings">
-          <IonIcon icon={person} />
+          <FiSearch width={24} height={24} style={{ width: 24, height: 24 }} />
+        </IonTabButton>
+        <IonTabButton className="bg-transparent" tab="tab3" href="/tabs/settings">
+          <RiMoneyDollarBoxLine width={24} height={24} style={{ width: 24, height: 24 }} />
+        </IonTabButton>
+        <IonTabButton className="bg-transparent" tab="tab3" href="/tabs/settings">
+          <FiUser width={24} height={24} style={{ width: 24, height: 24 }} />
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
