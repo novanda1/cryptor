@@ -17,11 +17,13 @@ const coin = {
   },
 };
 
-interface TrendingResponse {
-  trending: {
-    coins: typeof coin[];
-    exchanges: [];
-  };
+export interface Trending {
+  coins: typeof coin[];
+  exchanges: [];
+}
+
+export interface TrendingResponse {
+  trending: Trending;
   isLoading: boolean;
   isError: any;
 }
