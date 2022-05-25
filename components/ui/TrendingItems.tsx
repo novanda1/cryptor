@@ -11,7 +11,7 @@ const TrendingItems: React.FC<Props> = ({ trending }) => {
 
   return (
     <>
-      {trending.coins.slice(0, 3).map(({ item }) => {
+      {trending && trending.coins.slice(0, 3).map(({ item }) => {
         return (
           <div key={item.coin_id}>
             <h3>{item.symbol.toUpperCase()}</h3>

@@ -17,7 +17,11 @@ const Tabs = () => {
         <Route path="/tabs/settings" component={Settings} exact={true} />
         <Route path="/tabs" render={() => <Redirect to="/tabs/feed" />} exact={true} />
       </IonRouterOutlet>
-      <IonTabBar slot="bottom" className="bg-transparent">
+      <IonTabBar
+        slot="bottom"
+        className="bg-transparent"
+        style={{ boxShadow: '0px -20px 50px rgba(155, 155, 155, 0.1)' }}
+      >
         <IonTabButton className="bg-transparent" tab="tab1" href="/tabs/feed">
           <IonIcon icon={home} />
         </IonTabButton>

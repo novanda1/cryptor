@@ -9,13 +9,13 @@ const HeroLayout: React.FC = () => {
   const { isError, isLoading, trending } = useTrending();
 
   useEffect(() => {
-    setMarginBottom(elementRef.current.clientHeight + 20);
+    setMarginBottom(elementRef.current.clientHeight);
   }, [elementRef, trending]);
 
   return (
     <>
       <div
-        className="relative pt-10 pb-16 bg-gray-900 flex flex-col items-center justify-center"
+        className="relative pt-10 pb-16 bg-gray-900 text-white flex flex-col items-center justify-center"
         style={{ marginTop: 'var(--safe-area-top)', marginBottom }}
       >
         <h1 className="text-xl font-bold">Hey Novanda!</h1>
@@ -31,8 +31,11 @@ const HeroLayout: React.FC = () => {
         <div className="relative w-screen h-1 flex justify-center">
           <div
             ref={elementRef}
-            style={{ top: 'calc(100% + 47px)' }}
-            className="absolute bg-white text-black rounded-lg w-4/5 p-3 overflow-hidden"
+            style={{
+              top: 'calc(100% + 30px)',
+              boxShadow: 'rgb(0 0 0 / 4%) 0px 3px 20px 7px',
+            }}
+            className="absolute bg-white text-black rounded-lg right-4 left-4 p-4 overflow-hidden"
           >
             <h2 className="font-bold text-sm">Trending</h2>
 
