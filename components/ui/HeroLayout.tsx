@@ -28,7 +28,7 @@ const HeroLayout: React.FC = () => {
             <span className="text-2xl font-bold">500.000</span>
           </h4>
         </div>
-        <div className="relative w-screen h-1 flex justify-center">
+        <div className="relative w-full h-1 flex justify-center">
           <div
             ref={elementRef}
             style={{
