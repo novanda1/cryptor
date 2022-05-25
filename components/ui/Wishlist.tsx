@@ -12,7 +12,7 @@ const WishList: React.FC<any> = () => {
 
   return (
     <>
-      <h3 className="mt-10 text-lg font-medium mb-3">Wishlist</h3>
+      <h3 className="text-lg font-medium mb-3">Wishlist</h3>
       {isLoading && 'Loading...'}
       {market && (
         <IonSlides pager={false} options={slideOpts} style={{ margin: '0 -0.75rem' }}>

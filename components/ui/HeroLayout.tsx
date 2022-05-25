@@ -5,7 +5,7 @@ const HeroLayout: React.FC = () => {
   const [marginBottom, setMarginBottom] = useState<number>(0);
 
   useEffect(() => {
-    setMarginBottom(elementRef.current.clientHeight);
+    setMarginBottom(elementRef.current.clientHeight + 20);
   }, [elementRef]);
 
   return (
