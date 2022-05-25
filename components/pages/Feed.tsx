@@ -1,10 +1,12 @@
-import { IonAvatar, IonContent, IonPage, IonSlide, IonSlides } from '@ionic/react';
-import Image from 'next/image';
-import useTopGainer from '../../hooks/useTopGainer';
+import { IonContent, IonPage, IonSlide, IonSlides } from '@ionic/react';
 import Avatar from 'react-avatar';
+import useMarket from '../../hooks/useMarket';
+import useTopGainer from '../../hooks/useTopGainer';
+import currency from 'currency.js';
 
 const Feed = () => {
   const { isError, isLoading, trending } = useTopGainer();
+  const { isError: marketIsError, isLoading: marketIsLoading, market } = useMarket();
 
   const slideOpts = {
     slidesPerView: 3.8,
@@ -47,6 +49,31 @@ const Feed = () => {
                 );
               })}
           </IonSlides>
+
+          <h3 className="mt-10 text-lg font-medium mb-3">Stocks</h3>
+
+          <div>
+            <div className="flex flex-col">
+              {market &&
+                market.map(coin => {
+                  const price = '$' + currency(coin.current_price);
+                  const price_change_percentage_24h_in_currency = coin.price_change_percentage_24h_in_currency.toFixed(2)
+                  return (
+                    <div className="flex flex-row mb-4" key={coin.id}>
+                      <Avatar round={true} src={coin.image} size="40px" />
+                      <div className="flex flex-col items-start justify-center ml-3">
+                        <h4 className="block">{coin.name}</h4>
+                        <h5 className="text-gray-500 mt-1">{coin.symbol.toUpperCase()}</h5>
+                      </div>
+                      <div className="ml-auto flex flex-col items-end">
+                        <h6>{price}</h6>
+                        <p>{price_change_percentage_24h_in_currency}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
         </div>
       </IonContent>
     </IonPage>
