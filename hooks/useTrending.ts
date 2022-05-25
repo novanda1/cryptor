@@ -26,7 +26,7 @@ interface TrendingResponse {
   isError: any;
 }
 
-function useTopGainer(): TrendingResponse {
+function useTrending(): TrendingResponse {
   const { data, error } = useSWR('https://api.coingecko.com/api/v3/search/trending', fetcher);
 
   return {
@@ -36,4 +36,4 @@ function useTopGainer(): TrendingResponse {
   };
 }
 
-export default useTopGainer;
+export default useTrending;
