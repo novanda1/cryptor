@@ -21,11 +21,23 @@ const WishList: React.FC<any> = () => {
               coin.price_change_percentage_24h_in_currency.toFixed(2);
             return (
               <IonSlide key={coin.id}>
-                <div className="">
-                  <div className="rounded-full border-2 border-red-500 p-1">
-                    <Avatar round={true} src={coin.image} size="60px" />
+                <div className="text-sm font-medium">
+                  <div
+                    style={{ width: 70, height: 70 }}
+                    className={
+                      coin.price_change_percentage_24h_in_currency > 0
+                        ? 'border-green-400 rounded-full border-2 p-0.5 flex justify-center items-center'
+                        : 'border-red-400 rounded-full border-2 p-0.5 flex justify-center items-center'
+                    }
+                  >
+                    <Avatar
+                      className="border border-gray-100"
+                      round={true}
+                      src={coin.image}
+                      size="60px"
+                    />
                   </div>
-                  <h5 className="text-gray-500 mt-1">{coin.symbol.toUpperCase()}</h5>
+                  <h5 className="text-gray-500 mt-2">{coin.symbol.toUpperCase()}</h5>
 
                   <div className="flex items-center">
                     <span
