@@ -3,6 +3,7 @@ import Avatar from 'react-avatar';
 import useMarket from '../../hooks/useMarket';
 import useTopGainer from '../../hooks/useTopGainer';
 import currency from 'currency.js';
+import { FiArrowDownRight, FiArrowUpRight } from 'react-icons/fi';
 
 const Feed = () => {
   const { isError, isLoading, trending } = useTopGainer();
@@ -57,7 +58,8 @@ const Feed = () => {
               {market &&
                 market.map(coin => {
                   const price = '$' + currency(coin.current_price);
-                  const price_change_percentage_24h_in_currency = coin.price_change_percentage_24h_in_currency.toFixed(2)
+                  const price_change_percentage_24h_in_currency =
+                    coin.price_change_percentage_24h_in_currency.toFixed(2);
                   return (
                     <div className="flex flex-row mb-4" key={coin.id}>
                       <Avatar round={true} src={coin.image} size="40px" />
@@ -67,7 +69,31 @@ const Feed = () => {
                       </div>
                       <div className="ml-auto flex flex-col items-end">
                         <h6>{price}</h6>
-                        <p>{price_change_percentage_24h_in_currency}</p>
+
+                        <p className="flex items-center">
+                          <span
+                            className={
+                              coin.price_change_percentage_24h_in_currency > 0
+                                ? 'text-green-500'
+                                : 'text-red-500'
+                            }
+                          >
+                            {coin.price_change_percentage_24h_in_currency > 0 ? (
+                              <FiArrowUpRight />
+                            ) : (
+                              <FiArrowDownRight />
+                            )}
+                          </span>
+                          <span
+                            className={
+                              coin.price_change_percentage_24h_in_currency > 0
+                                ? 'text-green-500'
+                                : 'text-red-500'
+                            }
+                          >
+                            {price_change_percentage_24h_in_currency.replace('-', '') + '%'}
+                          </span>
+                        </p>
                       </div>
                     </div>
                   );
