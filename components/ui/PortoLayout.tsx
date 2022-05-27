@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Area, AreaChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { CategoricalChartState } from 'recharts/types/chart/generateCategoricalChart';
 import useTrending from '../../hooks/useTrending';
 import TrendingItems from './TrendingItems';
 
@@ -78,10 +79,6 @@ const CustomizedDot = props => {
     data.map(d => d.uv)
   );
 
-  console.log('value', value);
-  console.log('max', max);
-  console.log('min', min);
-
   if (value[1] === max) {
     return (
       <>
@@ -101,11 +98,25 @@ const CustomizedDot = props => {
   return <></>;
 };
 
+interface CurrentPosition {
+  value: number;
+  percent: number;
+  isUp: boolean;
+}
+
 const PortoLayout: React.FC = () => {
   const elementRef = useRef<HTMLDivElement>();
   const [marginBottom, setMarginBottom] = useState<number>(0);
 
+  const [current, setCurrent] = useState<CurrentPosition>({ isUp: true, percent: 10, value: 100 });
+
   const { isError, isLoading, trending } = useTrending();
+
+  const onDotPositionChange = (state: CategoricalChartState) => {
+    const value = state.activePayload[0].payload.uv;
+
+    setCurrent({ value, isUp: false, percent: 13 });
+  };
 
   useEffect(() => {
     setMarginBottom(elementRef.current.clientHeight);
@@ -119,7 +130,11 @@ const PortoLayout: React.FC = () => {
       >
         <h1 className="text-xl font-bold mr-auto mb-5 px-4">My Portfolio</h1>
         <ResponsiveContainer width="100%" height={300}>
-          <AreaChart data={data} margin={{ left: -5, right: -5 }}>
+          <AreaChart
+            data={data}
+            margin={{ left: -5, right: -5 }}
+            onClick={onDotPositionChange}
+          >
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#fff" stopOpacity={0.2} />
@@ -148,10 +163,12 @@ const PortoLayout: React.FC = () => {
             }}
             className="absolute bg-white text-black rounded-lg right-4 left-4 p-4 overflow-hidden"
           >
-            <h2 className="text-lg font-medium">Trending</h2>
-
-            <div className="flex justify-between mt-4">
-              <TrendingItems trending={trending} />
+            <div className="flex flex-col items-center">
+              <span className="block text-2xl font-bold"> ${current.value}</span>
+              <div className='font-medium'>
+                <span>$1.01 (10.06%)</span>
+                <span className='text-gray-800 ml-2'>All Time</span>
+              </div>
             </div>
           </div>
         </div>
