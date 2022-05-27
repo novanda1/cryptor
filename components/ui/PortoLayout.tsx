@@ -1,16 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  Area,
-  AreaChart, ResponsiveContainer,
-  Tooltip
-} from 'recharts';
+import { Area, AreaChart, ResponsiveContainer, Tooltip } from 'recharts';
 import useTrending from '../../hooks/useTrending';
 import TrendingItems from './TrendingItems';
 
 const data = [
   {
     name: 'Page A',
-    uv: 4000,
+    uv: 300,
     pv: 2400,
     amt: 2400,
   },
@@ -46,7 +42,7 @@ const data = [
   },
   {
     name: 'Page G',
-    uv: 3490,
+    uv: 180,
     pv: 4300,
     amt: 2100,
   },
@@ -64,11 +60,46 @@ const data = [
   },
   {
     name: 'Page J',
-    uv: 90,
+    uv: 2390,
     pv: 4300,
     amt: 2100,
   },
 ];
+
+const CustomizedDot = props => {
+  const { cx, cy, stroke, payload, value } = props;
+
+  const max = Math.max.apply(
+    Math,
+    data.map(d => d.uv)
+  );
+  const min = Math.min.apply(
+    Math,
+    data.map(d => d.uv)
+  );
+
+  console.log('value', value);
+  console.log('max', max);
+  console.log('min', min);
+
+  if (value[1] === max) {
+    return (
+      <>
+        <text x={cx - 10} y={cy - 30} fill="white" className="text-xs font-bold">
+          ${value[1]}
+        </text>
+      </>
+    );
+  } else if (value[1] === min) {
+    return (
+      <text x={cx - 10} y={cy + 30} fill="white" className="text-xs font-bold">
+        ${value[1]}
+      </text>
+    );
+  }
+
+  return <></>;
+};
 
 const PortoLayout: React.FC = () => {
   const elementRef = useRef<HTMLDivElement>();
@@ -86,29 +117,26 @@ const PortoLayout: React.FC = () => {
         className="pt-10 pb-16 bg-gray-900 text-white flex flex-col items-center justify-center"
         style={{ marginTop: 'var(--safe-area-top)', marginBottom }}
       >
-        <h1 className='text-xl font-bold'>My Portofolio</h1>
+        <h1 className="text-xl font-bold mr-auto mb-5 px-4">My Portfolio</h1>
         <ResponsiveContainer width="100%" height={300}>
-        <AreaChart
-          data={data}
-          margin={{left:-5, right:-5}}
-        >
-          <defs>
-            <linearGradient  id="colorUv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#fff" stopOpacity={0.2} />
-              <stop offset="45%" stopColor="#fff" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <Tooltip />
-          <Area
-            type="monotone"
-            dataKey="uv"
-            stroke="#fff"
-            fillOpacity={1}
-            fill="url(#colorUv)"
-            baseLine={9}
-          />
-         
-        </AreaChart>
+          <AreaChart data={data} margin={{ left: -5, right: -5 }}>
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#fff" stopOpacity={0.2} />
+                <stop offset="45%" stopColor="#fff" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <Tooltip content={<div></div>} />
+            <Area
+              type="monotone"
+              dataKey="uv"
+              stroke="#fff"
+              fillOpacity={1}
+              fill="url(#colorUv)"
+              baseLine={9}
+              dot={<CustomizedDot />}
+            />
+          </AreaChart>
         </ResponsiveContainer>
 
         <div className="relative w-full h-1 flex justify-center">
