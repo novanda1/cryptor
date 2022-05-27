@@ -26,8 +26,8 @@ const WishList: React.FC<any> = () => {
                     style={{ width: 70, height: 70 }}
                     className={
                       coin.price_change_percentage_24h_in_currency > 0
-                        ? 'border-green-400 rounded-full border-2 p-0.5 flex justify-center items-center'
-                        : 'border-red-400 rounded-full border-2 p-0.5 flex justify-center items-center'
+                        ? 'border-green-400 rounded-full border-3 p-0.5 flex justify-center items-center'
+                        : 'border-red-400 rounded-full border-3 p-0.5 flex justify-center items-center'
                     }
                   >
                     <Avatar
