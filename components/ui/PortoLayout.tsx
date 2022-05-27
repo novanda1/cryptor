@@ -123,7 +123,7 @@ const PortoLayout: React.FC = () => {
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#fff" stopOpacity={0.2} />
-                <stop offset="45%" stopColor="#fff" stopOpacity={0} />
+                <stop offset="75%" stopColor="#fff" stopOpacity={0} />
               </linearGradient>
             </defs>
             <Tooltip content={<div></div>} />
