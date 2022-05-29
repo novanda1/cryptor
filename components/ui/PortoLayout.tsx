@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { Area, AreaChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { CategoricalChartState } from 'recharts/types/chart/generateCategoricalChart';
 import useTrending from '../../hooks/useTrending';
-import TrendingItems from './TrendingItems';
+import useToggleGroup from '../ToggleGroup';
+import PX from './Px';
 
 const data = [
   {
     name: 'Page A',
-    uv: 300,
+    uv: 4000,
     pv: 2400,
     amt: 2400,
   },
@@ -19,7 +20,7 @@ const data = [
   },
   {
     name: 'Page C',
-    uv: 2000,
+    uv: 1000,
     pv: 9800,
     amt: 2290,
   },
@@ -43,29 +44,19 @@ const data = [
   },
   {
     name: 'Page G',
-    uv: 180,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Page H',
-    uv: 3410,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Page I',
-    uv: 490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Page J',
-    uv: 2390,
+    uv: 3490,
     pv: 4300,
     amt: 2100,
   },
 ];
+
+const dataRandom = () =>
+  data.map(d => {
+    return {
+      ...d,
+      uv: Math.random() * d.uv,
+    };
+  });
 
 const CustomizedDot = props => {
   const { cx, cy, stroke, payload, value } = props;
@@ -79,10 +70,15 @@ const CustomizedDot = props => {
     data.map(d => d.uv)
   );
 
+  const dynamicCx = (): number => {
+    if (cx > 20) return cx;
+    return 10;
+  };
+
   if (value[1] === max) {
     return (
       <>
-        <text x={cx - 10} y={cy - 30} fill="white" className="text-xs font-bold">
+        <text x={dynamicCx()} y={cy - 30} fill="white" className="text-xs font-bold">
           ${value[1]}
         </text>
       </>
@@ -112,6 +108,9 @@ const PortoLayout: React.FC = () => {
 
   const { isError, isLoading, trending } = useTrending();
 
+  const [dynamicData, setDynamicData] = useState(data);
+  const { ToggleGroup, active } = useToggleGroup({ types: ['1W', '1M', '3M', '1Y', 'ALL'] });
+
   const onDotPositionChange = (state: CategoricalChartState) => {
     const value = state.activePayload[0].payload.uv;
 
@@ -122,16 +121,21 @@ const PortoLayout: React.FC = () => {
     setMarginBottom(elementRef.current.clientHeight);
   }, [elementRef, trending]);
 
+  useEffect(() => {
+    if (active !== '1M') setDynamicData(dataRandom());
+    else setDynamicData(data);
+  }, [active]);
+
   return (
     <>
       <div
         className="pt-10 pb-16 bg-gray-900 text-white flex flex-col items-center justify-center"
         style={{ marginTop: 'var(--safe-area-top)', marginBottom }}
       >
-        <h1 className="text-xl font-bold mr-auto mb-5 px-4">My Portfolio</h1>
+        <h1 className="text-xl font-bold mr-auto mb-20 px-4">My Portfolio</h1>
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart
-            data={data}
+            data={dynamicData}
             margin={{ left: -5, right: -5 }}
             onClick={onDotPositionChange}
           >
@@ -154,6 +158,10 @@ const PortoLayout: React.FC = () => {
           </AreaChart>
         </ResponsiveContainer>
 
+        <PX size={4}>
+          <ToggleGroup />
+        </PX>
+
         <div className="relative w-full h-1 flex justify-center">
           <div
             ref={elementRef}
@@ -165,9 +173,9 @@ const PortoLayout: React.FC = () => {
           >
             <div className="flex flex-col items-center">
               <span className="block text-2xl font-bold"> ${current.value}</span>
-              <div className='font-medium'>
+              <div className="font-medium">
                 <span>$1.01 (10.06%)</span>
-                <span className='text-gray-800 ml-2'>All Time</span>
+                <span className="text-gray-800 ml-2">All Time</span>
               </div>
             </div>
           </div>

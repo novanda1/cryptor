@@ -8,9 +8,7 @@ import PortoLayout from '../ui/PortoLayout';
 const Lists = () => {
   return (
     <IonPage>
-      <IonHeader></IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense"></IonHeader>
         <Container>
           <PortoLayout />
         </Container>

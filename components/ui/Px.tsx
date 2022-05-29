@@ -6,7 +6,7 @@ type Props = {
 };
 
 const PX: React.FC<Props> = ({ size, children }) => {
-  return <div className={'px-' + size}>{children}</div>;
+  return <div className={'w-full px-' + size}>{children}</div>;
 };
 
 export default PX;
