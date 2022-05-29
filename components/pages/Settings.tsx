@@ -1,44 +1,28 @@
 import {
-  IonPage,
-  IonHeader,
-  IonItem,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonList,
-  IonToggle,
-  IonLabel,
+  IonContent, IonPage
 } from '@ionic/react';
-
 import Store from '../../store';
 import * as selectors from '../../store/selectors';
-import { setSettings } from '../../store/actions';
+import Container from '../ui/Container';
+import PX from '../ui/Px';
+
 
 const Settings = () => {
   const settings = Store.useState(selectors.getSettings);
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Settings</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent>
-        <IonList>
-          <IonItem>
-            <IonLabel>Enable Notifications</IonLabel>
-            <IonToggle
-              checked={settings.enableNotifications}
-              onIonChange={(e: any) => {
-                setSettings({
-                  ...settings,
-                  enableNotifications: e.target.checked,
-                });
-              }}
+        <Container>
+          <PX size={4}>
+            <h1 className="text-xl sm:text-2xl font-bold pt-10">What will your next great pick be?</h1>
+
+            <input
+              className="bg-gray-100 w-full mt-5 rounded-lg px-4 py-3"
+              placeholder='Try "BTC" or "Bitcoin"'
             />
-          </IonItem>
-        </IonList>
+          </PX>
+        </Container>
       </IonContent>
     </IonPage>
   );
