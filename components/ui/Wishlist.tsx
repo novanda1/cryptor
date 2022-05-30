@@ -4,7 +4,7 @@ import { FiArrowUpRight, FiArrowDownRight } from 'react-icons/fi';
 import useMarket from '../../hooks/useMarket';
 
 const slideOpts = {
-  slidesPerView: 3.8,
+  slidesPerView: 4.8,
 };
 
 const WishList: React.FC<any> = () => {
@@ -23,11 +23,10 @@ const WishList: React.FC<any> = () => {
               <IonSlide key={coin.id}>
                 <div className="text-sm font-medium">
                   <div
-                    style={{ width: 70, height: 70 }}
                     className={
                       coin.price_change_percentage_24h_in_currency > 0
-                        ? 'border-green-400 rounded-full border-3 p-0.5 flex justify-center items-center'
-                        : 'border-red-400 rounded-full border-3 p-0.5 flex justify-center items-center'
+                        ? 'border-green-400 rounded-full p-0.5 border-2 flex justify-center items-center '
+                        : 'border-red-400 rounded-full p-0.5 border-2 flex justify-center items-center '
                     }
                   >
                     <Avatar
