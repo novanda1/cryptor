@@ -1,3 +1,5 @@
+import { IonRouterLink } from '@ionic/react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import CoinListItem from './CoinListItem';
 
 type Props = {
@@ -6,10 +8,15 @@ type Props = {
 };
 
 const CoinList: React.FC<Props> = ({ coins, border = 'border-b' }) => {
+  const { push } = useHistory();
   return (
     <div className="flex flex-col">
       {coins &&
-        coins.map((coin: any) => <CoinListItem key={coin.id} coin={coin} border={border} />)}
+        coins.map((coin: any) => (
+          <IonRouterLink key={coin.id} onClick={() => push(`/coin/${coin.id}`)}>
+            <CoinListItem coin={coin} border={border} />
+          </IonRouterLink>
+        ))}
     </div>
   );
 };
