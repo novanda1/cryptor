@@ -76,8 +76,11 @@ const coin = {
   price_change_percentage_24h_in_currency: 2.8081174523724313,
 };
 
+export type MarketCoin = typeof coin;
+export type Market = typeof coin[];
+
 interface MarketResponse {
-  market: typeof coin[];
+  market: Market;
   isLoading: boolean;
   isError: any;
 }
