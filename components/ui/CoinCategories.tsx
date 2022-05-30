@@ -6,7 +6,7 @@ const CoinCategories: React.FC<Props> = () => {
   const { categories } = useCategories();
   return (
     <div className="overflow-x-auto overflow-y-hidden -mx-4 my-10 pl-4 py-1">
-      <div className="flex flex-wrap -m-2" style={{ width: '900vw' }}>
+      <div className="flex flex-wrap -m-2" style={{ width: '900%' }}>
         {categories &&
           categories.map(cat => {
             return (
