@@ -1,6 +1,3 @@
-import currency from 'currency.js';
-import Avatar from 'react-avatar';
-import { FiArrowDownRight, FiArrowUpRight } from 'react-icons/fi';
 import useMarket from '../../hooks/useMarket';
 import CoinList from './CoinList';
 
