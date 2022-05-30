@@ -7,7 +7,7 @@ type ButtonToggleProps = {
 };
 
 const ButtonToggle: React.FC<ButtonToggleProps> = ({ active, onClick, children }) => {
-  const mainClasses = 'px-4 py-2 rounded-lg';
+  const mainClasses = 'px-4 text-xs font-medium py-2 rounded-lg';
   const inactivaClasses = mainClasses + 'text-white';
   const activeClasses = mainClasses + ' bg-white text-black';
 
@@ -29,7 +29,7 @@ const useToggleGroup = ({ types }: { types: string[] }) => {
   const [active, setActive] = useState<string>(types[0]);
   return {
     ToggleGroup: () => (
-      <div className='flex justify-between w-full'>
+      <div className="flex justify-between w-full px-2">
         {types.map(t => (
           <ButtonToggle
             key={t}

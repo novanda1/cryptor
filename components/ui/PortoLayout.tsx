@@ -3,6 +3,7 @@ import { Area, AreaChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { CategoricalChartState } from 'recharts/types/chart/generateCategoricalChart';
 import useTrending from '../../hooks/useTrending';
 import useToggleGroup from '../ToggleGroup';
+import CustomizedDot from './CustomizeDot';
 import PX from './Px';
 
 const data = [
@@ -48,51 +49,69 @@ const data = [
     pv: 4300,
     amt: 2100,
   },
+  {
+    name: 'Page H',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+  {
+    name: 'Page I',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+  {
+    name: 'Page J',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+  {
+    name: 'Page K',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+  {
+    name: 'Page L',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+  {
+    name: 'Page M',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+  {
+    name: 'Page N',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+  {
+    name: 'Page O',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+  {
+    name: 'Page P',
+    uv: 4490,
+    pv: 4300,
+    amt: 2100,
+  },
 ];
 
 const dataRandom = () =>
   data.map(d => {
     return {
       ...d,
-      uv: Math.random() * d.uv,
+      uv: Math.round(Math.random() * d.uv),
     };
   });
-
-const CustomizedDot = props => {
-  const { cx, cy, stroke, payload, value } = props;
-
-  const max = Math.max.apply(
-    Math,
-    data.map(d => d.uv)
-  );
-  const min = Math.min.apply(
-    Math,
-    data.map(d => d.uv)
-  );
-
-  const dynamicCx = (): number => {
-    if (cx > 20) return cx;
-    return 10;
-  };
-
-  if (value[1] === max) {
-    return (
-      <>
-        <text x={dynamicCx()} y={cy - 30} fill="white" className="text-xs font-bold">
-          ${value[1]}
-        </text>
-      </>
-    );
-  } else if (value[1] === min) {
-    return (
-      <text x={cx - 10} y={cy + 30} fill="white" className="text-xs font-bold">
-        ${value[1]}
-      </text>
-    );
-  }
-
-  return <></>;
-};
 
 interface CurrentPosition {
   value: number;
@@ -102,7 +121,6 @@ interface CurrentPosition {
 
 const PortoLayout: React.FC = () => {
   const elementRef = useRef<HTMLDivElement>();
-  const [marginBottom, setMarginBottom] = useState<number>(0);
 
   const [current, setCurrent] = useState<CurrentPosition>({ isUp: true, percent: 10, value: 100 });
 
@@ -118,10 +136,6 @@ const PortoLayout: React.FC = () => {
   };
 
   useEffect(() => {
-    setMarginBottom(elementRef.current.clientHeight);
-  }, [elementRef, trending]);
-
-  useEffect(() => {
     if (active !== '1M') setDynamicData(dataRandom());
     else setDynamicData(data);
   }, [active]);
@@ -129,14 +143,14 @@ const PortoLayout: React.FC = () => {
   return (
     <>
       <div
-        className="pt-10 pb-16 bg-gray-900 text-white flex flex-col items-center justify-center"
+        className="pt-10 pb-16 bg-gray-800 text-white flex flex-col items-center justify-center"
         style={{ marginTop: 'var(--safe-area-top)', marginBottom: 100 }}
       >
         <h1 className="text-xl font-bold mr-auto mb-20 px-4">My Portfolio</h1>
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart
             data={dynamicData}
-            margin={{ left: -5, right: -5 }}
+            margin={{ left: 0, right: 0 }}
             onClick={onDotPositionChange}
           >
             <defs>
