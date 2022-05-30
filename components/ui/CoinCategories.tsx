@@ -1,3 +1,4 @@
+import { IonRouterLink } from '@ionic/react';
 import useCategories from '../../hooks/useCategories';
 
 type Props = {};
@@ -10,9 +11,11 @@ const CoinCategories: React.FC<Props> = () => {
         {categories &&
           categories.map(cat => {
             return (
-              <div key={cat.id} className="px-4 py-2 rounded-full border border-gray-200 mx-1 my-1.5">
-                {cat.name}
-              </div>
+              <IonRouterLink key={cat.id} href="/">
+                <div className="px-4 hover:bg-gray-100 transition ease-in-out py-2 rounded-full border border-gray-200 mx-1 my-1.5">
+                  {cat.name}
+                </div>
+              </IonRouterLink>
             );
           })}
       </div>
