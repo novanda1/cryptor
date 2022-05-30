@@ -41,9 +41,7 @@ const Category: React.FC<RouteComponentProps> = ({ match: { params } }: any) => 
               {coins?.length > 1 ? coins?.length + ' coins' : coins?.length + ' coin'}
             </span>
 
-            <div className="mt-4">
-              <CoinList coins={coins} border="border-t" />
-            </div>
+            <div className="mt-4">{coins && <CoinList coins={coins} border="border-t" />}</div>
           </PX>
         </Container>
       </IonContent>
