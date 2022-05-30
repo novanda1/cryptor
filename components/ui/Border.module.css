@@ -1,0 +1,3 @@
+.HeaderNoBorder::after {
+  opacity: 0;
+}

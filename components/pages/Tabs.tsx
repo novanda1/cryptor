@@ -1,8 +1,8 @@
-import { IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
-import { cog, home, list, person } from 'ionicons/icons';
+import { IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
 import { FiActivity, FiHome, FiSearch, FiUser } from 'react-icons/fi';
 import { RiMoneyDollarBoxLine } from 'react-icons/ri';
 import { Redirect, Route } from 'react-router-dom';
+import Category from './Category';
 
 import Home from './Feed';
 import ListDetail from './ListDetail';
@@ -17,6 +17,7 @@ const Tabs = () => {
         <Route path="/tabs/portfolio" component={Lists} exact={true} />
         <Route path="/tabs/portfolio/:listId" component={ListDetail} exact={true} />
         <Route path="/tabs/search" component={Settings} exact={true} />
+        <Route path="/tabs/search/:id" component={Category} exact={true} />
         <Route path="/tabs" render={() => <Redirect to="/tabs/home" />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar

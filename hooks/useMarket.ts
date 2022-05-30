@@ -79,7 +79,7 @@ const coin = {
 export type MarketCoin = typeof coin;
 export type Market = typeof coin[];
 
-interface MarketResponse {
+export interface MarketResponse {
   market: Market;
   isLoading: boolean;
   isError: any;

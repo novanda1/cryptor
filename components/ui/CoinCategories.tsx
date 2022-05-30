@@ -11,7 +11,7 @@ const CoinCategories: React.FC<Props> = () => {
         {categories &&
           categories.map(cat => {
             return (
-              <IonRouterLink key={cat.id} href="/">
+              <IonRouterLink key={cat.id} href={`/tabs/search/${cat.id}`}>
                 <div className="px-4 hover:bg-gray-100 transition ease-in-out py-2 rounded-full border border-gray-200 mx-1 my-1.5">
                   {cat.name}
                 </div>
