@@ -153,11 +153,13 @@ const PortoLayout: React.FC = () => {
               fillOpacity={1}
               fill="url(#colorUv)"
               baseLine={9}
+              strokeWidth={2.3}
               dot={<CustomizedDot />}
             />
           </AreaChart>
         </ResponsiveContainer>
 
+        <div className="mb-5"></div>
         <PX size={4}>
           <ToggleGroup />
         </PX>
