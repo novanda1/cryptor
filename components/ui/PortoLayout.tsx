@@ -130,7 +130,7 @@ const PortoLayout: React.FC = () => {
     <>
       <div
         className="pt-10 pb-16 bg-gray-900 text-white flex flex-col items-center justify-center"
-        style={{ marginTop: 'var(--safe-area-top)', marginBottom }}
+        style={{ marginTop: 'var(--safe-area-top)', marginBottom: 100 }}
       >
         <h1 className="text-xl font-bold mr-auto mb-20 px-4">My Portfolio</h1>
         <ResponsiveContainer width="100%" height={300}>
@@ -147,7 +147,7 @@ const PortoLayout: React.FC = () => {
             </defs>
             <Tooltip content={<div></div>} />
             <Area
-              type="monotone"
+              type="linear"
               dataKey="uv"
               stroke="#fff"
               fillOpacity={1}

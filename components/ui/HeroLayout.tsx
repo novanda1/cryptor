@@ -16,7 +16,7 @@ const HeroLayout: React.FC = () => {
     <>
       <div
         className="relative pt-10 pb-16 bg-gray-900 text-white flex flex-col items-center justify-center"
-        style={{ marginTop: 'var(--safe-area-top)', marginBottom }}
+        style={{ marginTop: 'var(--safe-area-top)', marginBottom: 120 }}
       >
         <h1 className="text-xl font-bold">Hey Novanda!</h1>
         <p className=" text-sm mt-1">You such a great cryptor player</p>
