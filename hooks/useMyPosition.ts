@@ -19,7 +19,7 @@ export type MyPositionResponse = {
 function useMyPosition(): MyPositionResponse {
   const { data, error } = useSWR('/myposition', () => [
     {
-      id: '1',
+      id: 'bitcoin',
       image: 'https://assets.coingecko.com/coins/images/1/large/bitcoin.png',
       name: 'Bitcoin',
       buyAtPrice: 40,
@@ -28,9 +28,9 @@ function useMyPosition(): MyPositionResponse {
       symbol: 'btc',
     },
     {
-      id: '2',
-      image: 'https://assets.coingecko.com/coins/images/1/large/etherium.png',
-      name: 'Etherium',
+      id: 'ethereum',
+      image: 'https://assets.coingecko.com/coins/images/1/large/ethereum.png',
+      name: 'ethereum',
       buyAtPrice: 40,
       current_price: 40,
       price_change_percentage_24h_in_currency: 30,
