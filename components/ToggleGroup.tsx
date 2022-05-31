@@ -29,7 +29,7 @@ const useToggleGroup = ({ types }: { types: string[] }) => {
   const [active, setActive] = useState<string>(types[0]);
   return {
     ToggleGroup: () => (
-      <div className="flex justify-between w-full px-2">
+      <div className="flex justify-center w-full px-2 mt-8">
         {types.map(t => (
           <ButtonToggle
             key={t}

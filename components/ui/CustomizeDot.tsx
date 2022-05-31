@@ -16,8 +16,6 @@ const CustomizedDot: React.FC<any> = props => {
     points?.map(d => d.payload.uv)
   );
 
-  console.log('props', -thisW - 10);
-
   const dynamicCx = (): number => {
     if (screenWidth - (cx + thisW) < thisW) {
       return screenWidth - thisW - 3;

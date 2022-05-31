@@ -1,10 +1,12 @@
+import { FetchError } from '@/types/api';
+import { Coin } from '@/types/coin';
 import {
   IonBackButton,
   IonButtons,
   IonContent,
   IonHeader,
   IonPage,
-  IonToolbar
+  IonToolbar,
 } from '@ionic/react';
 import Image from 'next/image';
 import { RouteComponentProps } from 'react-router-dom';
@@ -13,12 +15,29 @@ import styles from '../ui/Border.module.css';
 import Container from '../ui/Container';
 import PX from '../ui/Px';
 
+const CoinHeading: React.FC<{ coin: Coin & FetchError }> = ({ coin }) => {
+  return (
+    <div className="flex items-center justify-between mt-5  ">
+      <div className="w-auto">
+        <h4 className="font-medium">{coin.symbol?.toUpperCase()}</h4>
+        <h1 className="font-bold text-xl">{coin.name}</h1>
+        <p className="text-sm font-medium">Last close ${coin.market_data?.current_price['usd']}</p>
+      </div>
+      <div className="w-max">
+        {coin.image?.large && (
+          <Image width={60} height={60} src={coin.image?.large} alt={coin.name} />
+        )}
+      </div>
+    </div>
+  );
+};
+
 const Coin: React.FC<RouteComponentProps<{ id: string }>> = ({
   match: {
     params: { id },
   },
 }) => {
-  const { coin } = useCoin({
+  const { coin, isError, isLoading } = useCoin({
     id,
     localization: false,
     tickers: false,
@@ -39,24 +58,40 @@ const Coin: React.FC<RouteComponentProps<{ id: string }>> = ({
       </IonHeader>
       <IonContent fullscreen>
         <Container>
-          {coin ? (
-            <PX size={4}>
+          <PX size={4}>
+            {coin?.name && !isError && !isLoading ? (
               <div className="flex items-center justify-between mt-5  ">
                 <div className="w-auto">
-                  <h4 className="font-medium">{coin?.symbol.toUpperCase()}</h4>
-                  <h1 className="font-bold text-xl">{coin?.name}</h1>
+                  <h4 className="font-medium">{coin.symbol?.toUpperCase()}</h4>
+                  <h1 className="font-bold text-xl">{coin.name}</h1>
                   <p className="text-sm font-medium">
-                    Last close ${coin?.market_data.current_price['usd']}
+                    Last close ${coin.market_data?.current_price['usd']}
                   </p>
                 </div>
                 <div className="w-max">
-                  <Image width={60} height={60} src={coin.image.large} alt={coin.name} />
+                  {coin.image?.large && (
+                    <Image width={60} height={60} src={coin.image?.large} alt={coin.name} />
+                  )}
                 </div>
               </div>
-            </PX>
-          ) : (
-            'loading...'
-          )}
+            ) : (
+              <div>
+                {coin?.error}
+                <p>
+                  Please contact developer! at{' '}
+                  <a
+                    href="mailto:novandaahsan1@gmail.com"
+                    className="text-green-600 font-bold"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    novandaahsan1@gmail.com
+                  </a>
+                </p>
+              </div>
+            )}
+            {isLoading && 'Loading...'}
+          </PX>
         </Container>
       </IonContent>
     </IonPage>
