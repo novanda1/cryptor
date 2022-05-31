@@ -11,7 +11,7 @@ type Props = {
 const Chart: React.FC<Props> = ({ onDotPositionChange, data }) => {
   return (
     <>
-      <ResponsiveContainer width="99%" height={289}>
+      <ResponsiveContainer width="99%" height={300}>
         <AreaChart
           data={data}
           margin={{ left: 0, right: 0 }}
@@ -20,14 +20,14 @@ const Chart: React.FC<Props> = ({ onDotPositionChange, data }) => {
         >
           <defs>
             <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#fff" stopOpacity={0.2} />
-              <stop offset="75%" stopColor="#fff" stopOpacity={0} />
+              <stop offset="0%" stopColor="#fff" stopOpacity={0.3} />
+              <stop offset="95%" stopColor="#fff" stopOpacity={0} />
             </linearGradient>
           </defs>
           <Tooltip content={<div></div>} />
           <Area
             type="linear"
-            legendType='circle'
+            legendType="circle"
             dataKey="price"
             stroke="#fff"
             fillOpacity={1}
@@ -36,6 +36,7 @@ const Chart: React.FC<Props> = ({ onDotPositionChange, data }) => {
             strokeWidth={2.3}
             dot={<CustomizedDot />}
           />
+          <YAxis hide domain={['dataMin', 'dataMax']} />
         </AreaChart>
       </ResponsiveContainer>
     </>

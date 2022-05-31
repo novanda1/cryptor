@@ -7,19 +7,17 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonToolbar,
+  IonToolbar
 } from '@ionic/react';
 import Image from 'next/image';
 import { RouteComponentProps } from 'react-router-dom';
 import useCoin from '../../hooks/useCoin';
 import styles from '../ui/Border.module.css';
 import ChartLayout from '../ui/ChartLayout';
-import Container from '../ui/Container';
-import PX from '../ui/Px';
 
 const CoinHeading: React.FC<{ coin: Coin & FetchError }> = ({ coin }) => {
   return (
-    <div className="flex items-center justify-between w-full px-4 mb-28 -mt-7">
+    <div className="flex items-center justify-between w-full px-4 mb-14 -mt-7">
       <div className="w-auto">
         <h4 className="font-medium">{coin.symbol?.toUpperCase()}</h4>
         <h1 className="font-bold text-xl">{coin.name}</h1>

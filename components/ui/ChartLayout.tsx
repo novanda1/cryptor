@@ -5,6 +5,7 @@ import { CurrentPosition } from '@/types/position';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { CategoricalChartState } from 'recharts/types/chart/generateCategoricalChart';
+import round from 'utils/round';
 import Chart from './Chart';
 import ChartDotInfo from './ChartDotInfo';
 
@@ -29,7 +30,7 @@ const ChartLayout: React.FC<Props> = ({ data, heading, coinName }) => {
   } = useChart(coinName, {
     vs_currency: 'usd',
     days: active + '',
-    interval: active < 7 ? 'hourly' : active > 30 ? 'monthly' : 'daily',
+    interval: active <= 7 ? 'hourly' : active >= 30 ? 'monthly' : 'daily',
   });
 
   const [formatedChartData, setFormatedChartData] = useState<FormatedChartData[]>();
@@ -45,10 +46,9 @@ const ChartLayout: React.FC<Props> = ({ data, heading, coinName }) => {
   useEffect(() => {
     if (bitcoinData) {
       const format: FormatedChartData[] = [];
-      console.log('active', active);
 
       bitcoinData.prices?.forEach(price => {
-        return format.push({ unix: price[0], price: price[1] });
+        return format.push({ unix: price[0], price: +round(price[1], 2) });
       });
 
       setFormatedChartData(format);
