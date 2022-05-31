@@ -43,7 +43,7 @@ const Coin: React.FC<RouteComponentProps<{ id: string }>> = ({
     tickers: false,
     community_data: false,
     developer_data: false,
-    market_data: false,
+    market_data: true,
     sparkline: false,
   });
 
@@ -59,7 +59,7 @@ const Coin: React.FC<RouteComponentProps<{ id: string }>> = ({
       <IonContent fullscreen>
         <Container>
           <PX size={4}>
-            {coin?.name && !isError && !isLoading ? (
+            {coin?.name && !isError ? (
               <div className="flex items-center justify-between mt-5  ">
                 <div className="w-auto">
                   <h4 className="font-medium">{coin.symbol?.toUpperCase()}</h4>
@@ -74,6 +74,8 @@ const Coin: React.FC<RouteComponentProps<{ id: string }>> = ({
                   )}
                 </div>
               </div>
+            ) : isLoading ? (
+              'Loading...'
             ) : (
               <div>
                 {coin?.error}
@@ -90,7 +92,6 @@ const Coin: React.FC<RouteComponentProps<{ id: string }>> = ({
                 </p>
               </div>
             )}
-            {isLoading && 'Loading...'}
           </PX>
         </Container>
       </IonContent>
