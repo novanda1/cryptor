@@ -6,7 +6,7 @@ const HeroLayout: React.FC = () => {
   const elementRef = useRef<HTMLDivElement>();
   const [marginBottom, setMarginBottom] = useState<number>(0);
 
-  const { isError, isLoading, trending } = useTrending();
+  const { isError, isLoading, data: trending } = useTrending();
 
   useEffect(() => {
     setMarginBottom(elementRef.current.clientHeight);

@@ -37,7 +37,11 @@ const Coin: React.FC<RouteComponentProps<{ id: string }>> = ({
     params: { id },
   },
 }) => {
-  const { coin, isError, isLoading } = useCoin({
+  const {
+    data: coin,
+    isError,
+    isLoading,
+  } = useCoin({
     id,
     localization: false,
     tickers: false,

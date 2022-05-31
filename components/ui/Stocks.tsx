@@ -2,7 +2,7 @@ import useMarket from '../../hooks/useMarket';
 import CoinList from './CoinList';
 
 const Stocks: React.FC<any> = () => {
-  const { isError: marketIsError, isLoading: marketIsLoading, market } = useMarket();
+  const { isError, isLoading, data: market } = useMarket();
 
   return (
     <>

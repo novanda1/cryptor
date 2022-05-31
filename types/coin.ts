@@ -2,12 +2,12 @@ export interface Coin {
   id: ID;
   symbol: string;
   name: string;
-  asset_platform_id: null;
+  asset_platform_id: null | any;
   platforms: Platforms;
   block_time_in_minutes: number;
   hashing_algorithm: string;
   categories: string[];
-  public_notice: null;
+  public_notice: null | any;
   additional_notices: any[];
   localization: Tion;
   description: Tion;
@@ -34,13 +34,13 @@ export interface Coin {
 }
 
 export interface CommunityData {
-  facebook_likes: null;
+  facebook_likes: null | any;
   twitter_followers: number;
   reddit_average_posts_48h: number;
   reddit_average_comments_48h: number;
   reddit_subscribers: number;
   reddit_accounts_active_48h: number;
-  telegram_channel_user_count: null;
+  telegram_channel_user_count: null | any;
 }
 
 export interface Tion {
@@ -122,7 +122,7 @@ export interface Links {
   announcement_url: string[];
   twitter_screen_name: ID;
   facebook_username: string;
-  bitcointalk_thread_identifier: null;
+  bitcointalk_thread_identifier: null | any;
   telegram_channel_identifier: string;
   subreddit_url: string;
   repos_url: ReposURL;
@@ -135,10 +135,10 @@ export interface ReposURL {
 
 export interface MarketData {
   current_price: { [key: string]: number };
-  total_value_locked: null;
-  mcap_to_tvl_ratio: null;
-  fdv_to_tvl_ratio: null;
-  roi: null;
+  total_value_locked: null | any;
+  mcap_to_tvl_ratio: null | any;
+  fdv_to_tvl_ratio: null | any;
+  roi: Roi | null;
   ath: { [key: string]: number };
   ath_change_percentage: { [key: string]: number };
   ath_date: { [key: string]: Date };
@@ -189,7 +189,7 @@ export interface Platforms {
 
 export interface PublicInterestStats {
   alexa_rank: number;
-  bing_matches: null;
+  bing_matches: null | any;
 }
 
 export interface Ticker {
@@ -207,8 +207,8 @@ export interface Ticker {
   last_fetch_at: Date;
   is_anomaly: boolean;
   is_stale: boolean;
-  trade_url: null | string;
-  token_info_url: null;
+  trade_url: null | any | string;
+  token_info_url: null | any;
   coin_id: ID;
   target_coin_id?: TargetCoinID;
 }
@@ -263,4 +263,89 @@ export interface CoinCategory {
   top_3_coins: string[];
   volume_24h: number;
   updated_at: Date;
+}
+
+// from coins/markets
+export interface CoinMarket {
+  id: string;
+  symbol: string;
+  name: string;
+  image: string;
+  current_price: number;
+  market_cap: number;
+  market_cap_rank: number;
+  fully_diluted_valuation: number | null;
+  total_volume: number;
+  high_24h: number;
+  low_24h: number;
+  price_change_24h: number;
+  price_change_percentage_24h: number;
+  market_cap_change_24h: number;
+  market_cap_change_percentage_24h: number;
+  circulating_supply: number;
+  total_supply: number | null;
+  max_supply: number | null;
+  ath: number;
+  ath_change_percentage: number;
+  ath_date: Date;
+  atl: number;
+  atl_change_percentage: number;
+  atl_date: Date;
+  roi: Roi | null;
+  last_updated: Date;
+  sparkline_in_7d: SparklineIn7D;
+  price_change_percentage_24h_in_currency: number;
+}
+
+export interface Roi {
+  times: number;
+  currency: Currency;
+  percentage: number;
+}
+
+export enum Currency {
+  Btc = 'btc',
+  Eth = 'eth',
+  Usd = 'usd',
+}
+
+export interface SparklineIn7D {
+  price: number[];
+}
+
+// from /simple/price
+export interface SimplePriceCoin {
+  usd: number;
+  usd_market_cap: number;
+  usd_24h_vol: number;
+  usd_24h_change: number;
+  last_updated_at: number;
+}
+
+export interface SimplePrice {
+  [key: string]: SimplePriceCoin;
+}
+
+// from /search/trending
+export interface Trending {
+  coins: TrendingCoin[];
+  exchanges: any[];
+}
+
+export interface TrendingCoin {
+  item: TrendingItem;
+}
+
+export interface TrendingItem {
+  id: string;
+  coin_id: number;
+  name: string;
+  symbol: string;
+  market_cap_rank: number;
+  thumb: string;
+  small: string;
+  large: string;
+  slug: string;
+  price_btc: number;
+  score: number;
 }

@@ -1,4 +1,6 @@
-import { CoinResponse } from '@/types/api';
+import customSWRReturn from '@/lib/customSWRReturn';
+import { CustomSWRResponse } from '@/types/api';
+import { Coin } from '@/types/coin';
 import useSWR from 'swr';
 import { fetcher } from '../lib/cmc-fetcher';
 
@@ -19,21 +21,14 @@ export type UseCoinArgs = {
   sparkline?: boolean;
 };
 
-function useCoin(args: UseCoinArgs): CoinResponse {
+function useCoin(args: UseCoinArgs): CustomSWRResponse<Coin> {
   const query = new URLSearchParams();
   Object.keys(args)
     .filter(key => key !== 'id')
     .map(key => query.append(key, args[key] + ''));
-  const { data, error } = useSWR(
-    `https://api.coingecko.com/api/v3/coins/${args.id}?${query}`,
-    fetcher
+  return customSWRReturn(
+    useSWR(`https://api.coingecko.com/api/v3/coins/${args.id}?${query}`, fetcher)
   );
-
-  return {
-    coin: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
 }
 
 export default useCoin;

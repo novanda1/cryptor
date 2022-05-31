@@ -5,7 +5,7 @@ import useCategories from '../../hooks/useCategories';
 type Props = {};
 
 const CoinCategories: React.FC<Props> = () => {
-  const { categories } = useCategories();
+  const { data: categories } = useCategories();
   const { push } = useHistory();
 
   return (

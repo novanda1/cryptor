@@ -1,11 +1,11 @@
+import { CoinMarket } from '@/types/coin';
 import currency from 'currency.js';
 import Avatar from 'react-avatar';
 import { FiArrowDownRight, FiArrowUpRight } from 'react-icons/fi';
-import { MarketCoin } from '../../hooks/useMarket';
 import { MyCoin } from '../../hooks/useMyPosition';
 
 type Props = {
-  coin: MarketCoin | MyCoin;
+  coin: CoinMarket | MyCoin;
   border?: 'border-b' | 'border-t';
 };
 

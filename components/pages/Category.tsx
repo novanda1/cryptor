@@ -16,10 +16,10 @@ import PageTitle from '../ui/PageTitle';
 import PX from '../ui/Px';
 
 const Category: React.FC<RouteComponentProps> = ({ match: { params } }: any) => {
-  const { categories } = useCategories();
+  const { data: categories } = useCategories();
   const current = categories && categories.filter(c => c.id === params.id)[0];
 
-  const { coins } = useCoinsByCategoryId(params.id);
+  const { data: coins } = useCoinsByCategoryId(params.id);
 
   return (
     <IonPage>

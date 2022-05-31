@@ -8,7 +8,7 @@ const slideOpts = {
 };
 
 const WishList: React.FC<any> = () => {
-  const { isLoading, market } = useMarket();
+  const { isLoading, data: market } = useMarket();
 
   return (
     <>

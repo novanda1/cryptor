@@ -1,5 +1,5 @@
 import { IonRouterLink } from '@ionic/react';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import CoinListItem from './CoinListItem';
 
 type Props = {
