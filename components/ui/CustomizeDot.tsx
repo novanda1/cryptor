@@ -9,11 +9,11 @@ const CustomizedDot: React.FC<any> = props => {
 
   const max = Math.max.apply(
     Math,
-    points?.map(d => d.payload.uv)
+    points?.map(d => d.payload.price)
   );
   const min = Math.min.apply(
     Math,
-    points?.map(d => d.payload.uv)
+    points?.map(d => d.payload.price)
   );
 
   const dynamicCx = (): number => {

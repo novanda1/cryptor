@@ -14,13 +14,9 @@ const Portfolio = () => {
       <IonContent fullscreen>
         <Container>
           <ChartLayout
+            coinName="bitcoin"
             heading={<h1 className="text-xl font-bold mr-auto mb-20 px-4">My Portfolio</h1>}
-            data={[
-              { data: data, type: '1W' },
-              { data: dataRandom(), type: '1M' },
-              { data: dataRandom(), type: '3M' },
-              { data: dataRandom(), type: '1Y' },
-            ]}
+            data={[{ days: '1' }, { days: '7' }, { days: '30' }, { days: '90' }, { days: '365' }]}
           />
 
           <PX size={4}>

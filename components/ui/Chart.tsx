@@ -1,19 +1,25 @@
-import { ResponsiveContainer, AreaChart, Tooltip, Area } from 'recharts';
+import { FormatedChartData } from '@/types/chart';
+import { ResponsiveContainer, AreaChart, Tooltip, Area, YAxis } from 'recharts';
 import { CategoricalChartState } from 'recharts/types/chart/generateCategoricalChart';
 import CustomizedDot from './CustomizeDot';
 
 type Props = {
   onDotPositionChange: (state: CategoricalChartState) => void;
-  dynamicData: any;
+  data: FormatedChartData[];
 };
 
-const Chart: React.FC<Props> = ({ onDotPositionChange, dynamicData }) => {
+const Chart: React.FC<Props> = ({ onDotPositionChange, data }) => {
   return (
     <>
-      <ResponsiveContainer width="100%" height={300}>
-        <AreaChart data={dynamicData} margin={{ left: 0, right: 0 }} onClick={onDotPositionChange}>
+      <ResponsiveContainer width="99%" height={289}>
+        <AreaChart
+          data={data}
+          margin={{ left: 0, right: 0 }}
+          onClick={onDotPositionChange}
+          startAngle={3}
+        >
           <defs>
-            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#fff" stopOpacity={0.2} />
               <stop offset="75%" stopColor="#fff" stopOpacity={0} />
             </linearGradient>
@@ -21,10 +27,11 @@ const Chart: React.FC<Props> = ({ onDotPositionChange, dynamicData }) => {
           <Tooltip content={<div></div>} />
           <Area
             type="linear"
-            dataKey="uv"
+            legendType='circle'
+            dataKey="price"
             stroke="#fff"
             fillOpacity={1}
-            fill="url(#colorUv)"
+            fill="url(#colorPrice)"
             baseLine={9}
             strokeWidth={2.3}
             dot={<CustomizedDot />}

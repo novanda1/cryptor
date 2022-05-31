@@ -25,8 +25,8 @@ const ButtonToggle: React.FC<ButtonToggleProps> = ({ active, onClick, children }
   );
 };
 
-const useToggleGroup = ({ types }: { types: string[] }) => {
-  const [active, setActive] = useState<string>(types[0]);
+const useToggleGroup = ({ types }: { types: number[] }) => {
+  const [active, setActive] = useState<number>(types[0]);
   return {
     ToggleGroup: () => (
       <div className="flex justify-center w-full px-2 mt-8">
@@ -38,7 +38,7 @@ const useToggleGroup = ({ types }: { types: string[] }) => {
               setActive(t);
             }}
           >
-            {t}
+            {t} D
           </ButtonToggle>
         ))}
       </div>

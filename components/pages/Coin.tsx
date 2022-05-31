@@ -1,3 +1,4 @@
+import useChart from '@/hooks/useChart';
 import { FetchError } from '@/types/api';
 import { Coin } from '@/types/coin';
 import {
@@ -12,12 +13,13 @@ import Image from 'next/image';
 import { RouteComponentProps } from 'react-router-dom';
 import useCoin from '../../hooks/useCoin';
 import styles from '../ui/Border.module.css';
+import ChartLayout from '../ui/ChartLayout';
 import Container from '../ui/Container';
 import PX from '../ui/Px';
 
 const CoinHeading: React.FC<{ coin: Coin & FetchError }> = ({ coin }) => {
   return (
-    <div className="flex items-center justify-between mt-5  ">
+    <div className="flex items-center justify-between w-full px-4 mb-28 -mt-7">
       <div className="w-auto">
         <h4 className="font-medium">{coin.symbol?.toUpperCase()}</h4>
         <h1 className="font-bold text-xl">{coin.name}</h1>
@@ -51,33 +53,32 @@ const Coin: React.FC<RouteComponentProps<{ id: string }>> = ({
     sparkline: false,
   });
 
+  const { data } = useChart(id);
+
+  console.log('data', data);
+
   return (
     <IonPage>
-      <IonHeader className={styles.HeaderNoBorder} mode="md">
-        <IonToolbar mode="md">
+      <IonHeader className={styles.HeaderNoBorder + ' bg-gray-800 text-white'} mode="md">
+        <IonToolbar mode="md" className='bg-gray-800 text-white' color='black'>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/" />
+            <IonBackButton defaultHref="/" color='white' />
           </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <Container>
-          <PX size={4}>
             {coin?.name && !isError ? (
-              <div className="flex items-center justify-between mt-5  ">
-                <div className="w-auto">
-                  <h4 className="font-medium">{coin.symbol?.toUpperCase()}</h4>
-                  <h1 className="font-bold text-xl">{coin.name}</h1>
-                  <p className="text-sm font-medium">
-                    Last close ${coin.market_data?.current_price['usd']}
-                  </p>
-                </div>
-                <div className="w-max">
-                  {coin.image?.large && (
-                    <Image width={60} height={60} src={coin.image?.large} alt={coin.name} />
-                  )}
-                </div>
-              </div>
+              <ChartLayout
+                coinName={coin.id}
+                heading={<CoinHeading coin={coin} />}
+                data={[
+                  { days: '1' },
+                  { days: '7' },
+                  { days: '30' },
+                  { days: '90' },
+                  { days: '365' },
+                ]}
+              />
             ) : isLoading ? (
               'Loading...'
             ) : (
@@ -96,8 +97,6 @@ const Coin: React.FC<RouteComponentProps<{ id: string }>> = ({
                 </p>
               </div>
             )}
-          </PX>
-        </Container>
       </IonContent>
     </IonPage>
   );
