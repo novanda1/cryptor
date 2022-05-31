@@ -7,7 +7,7 @@ import ChartLayout from '../ui/ChartLayout';
 import PX from '../ui/Px';
 import SectionTitle from '../ui/SectionTitlte';
 
-const Lists = () => {
+const Portfolio = () => {
   const { coins, isError, isLoading } = useMyPosition();
   return (
     <IonPage>
@@ -34,4 +34,4 @@ const Lists = () => {
   );
 };
 
-export default Lists;
+export default Portfolio;

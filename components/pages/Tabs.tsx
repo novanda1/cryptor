@@ -4,21 +4,19 @@ import { RiMoneyDollarBoxLine } from 'react-icons/ri';
 import { Redirect, Route } from 'react-router-dom';
 import Category from './Category';
 
-import Home from './Feed';
+import Home from './Home';
 import Fund from './Fund';
-import ListDetail from './ListDetail';
-import Lists from './Lists';
+import Portfolio from './Portfolio';
 import Me from './Me';
-import Settings from './Settings';
+import Search from './Search';
 
 const Tabs = () => {
   return (
     <IonTabs>
       <IonRouterOutlet>
         <Route path="/tabs/home" component={Home} exact={true} />
-        <Route path="/tabs/portfolio" component={Lists} exact={true} />
-        <Route path="/tabs/portfolio/:listId" component={ListDetail} exact={true} />
-        <Route path="/tabs/search" component={Settings} exact={true} />
+        <Route path="/tabs/portfolio" component={Portfolio} exact={true} />
+        <Route path="/tabs/search" component={Search} exact={true} />
         <Route path="/tabs/search/:id" component={Category} exact={true} />
         <Route path="/tabs/fund" component={Fund} exact={true} />
         <Route path="/tabs/me" component={Me} exact={true} />

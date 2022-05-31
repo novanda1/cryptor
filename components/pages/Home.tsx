@@ -5,7 +5,7 @@ import PX from '../ui/Px';
 import Stocks from '../ui/Stocks';
 import WishList from '../ui/Wishlist';
 
-const Feed = () => {
+const Home = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -21,4 +21,4 @@ const Feed = () => {
   );
 };
 
-export default Feed;
+export default Home;
