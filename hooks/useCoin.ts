@@ -25,7 +25,7 @@ function useCoin(args: UseCoinArgs): CoinResponse {
     .filter(key => key !== 'id')
     .map(key => query.append(key, args[key] + ''));
   const { data, error } = useSWR(
-    `https://api.coingecko.com/api/v3/coins/${args.id}?query`,
+    `https://api.coingecko.com/api/v3/coins/${args.id}?${query}`,
     fetcher
   );
 
