@@ -1,7 +1,19 @@
 import { FormatedChartData } from '@/types/chart';
-import { ResponsiveContainer, AreaChart, Tooltip, Area, YAxis } from 'recharts';
+import { useTooltipStore } from 'global-stores/useTooltipStore';
+import { useEffect } from 'react';
+import { Area, AreaChart, ResponsiveContainer, Tooltip, YAxis } from 'recharts';
 import { CategoricalChartState } from 'recharts/types/chart/generateCategoricalChart';
 import CustomizedDot from './CustomizeDot';
+
+function TooltipContent({ payload }: any) {
+  const store = useTooltipStore(s => s.setData);
+
+  useEffect(() => {
+    payload[0] && store(payload[0].payload);
+  }, [payload, store]);
+
+  return <div> </div>;
+}
 
 type Props = {
   onDotPositionChange: (state: CategoricalChartState) => void;
@@ -9,6 +21,16 @@ type Props = {
 };
 
 const Chart: React.FC<Props> = ({ onDotPositionChange, data }) => {
+  const store = useTooltipStore(s => s.setData);
+
+  useEffect(() => {
+    store(data[data.length - 1]);
+
+    return () => {
+      store();
+    };
+  }, [data, store]);
+
   return (
     <>
       <ResponsiveContainer width="99%" height={300}>
@@ -24,8 +46,11 @@ const Chart: React.FC<Props> = ({ onDotPositionChange, data }) => {
               <stop offset="95%" stopColor="#fff" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <Tooltip content={<div></div>} />
+          <Tooltip content={<TooltipContent />} />
           <Area
+            onDrag={e => {
+              console.log('e', e);
+            }}
             type="linear"
             legendType="circle"
             dataKey="price"

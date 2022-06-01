@@ -53,8 +53,6 @@ const Coin: React.FC<RouteComponentProps<{ id: string }>> = ({
 
   const { data } = useChart(id);
 
-  console.log('data', data);
-
   return (
     <IonPage>
       <IonHeader className={styles.HeaderNoBorder + ' bg-gray-800 text-white'} mode="md">
