@@ -63,9 +63,12 @@ const ChartLayout: React.FC<Props> = ({ data, heading, coinName }) => {
       >
         {heading}
 
-        {!isLoading && !isError && formatedChartData && (
-          <Chart data={formatedChartData} onDotPositionChange={onDotPositionChange} />
-        )}
+        <div style={{ minHeight: 300 }}>
+          {!isLoading && !isError && formatedChartData && (
+            <Chart data={formatedChartData} onDotPositionChange={onDotPositionChange} />
+          )}
+        </div>
+
         <ToggleGroup />
         <ChartDotInfo current={current} />
       </div>
