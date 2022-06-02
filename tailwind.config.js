@@ -1,5 +1,13 @@
 module.exports = {
-  purge: [],
+  content: [
+    './components/**/*.{ts,tsx}',
+    './global-stores/**/*.{ts,tsx}',
+    './hooks/**/*.{ts,tsx}',
+    './lib/**/*.{ts,tsx}',
+    './pages/**/*.{ts,tsx}',
+    './styles/**/*.{ts,tsx}',
+    './utils/**/*.{ts,tsx}',
+  ],
   darkMode: 'media',
   theme: {
     extend: {},
@@ -7,5 +15,9 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
 };
