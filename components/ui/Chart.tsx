@@ -1,3 +1,4 @@
+import useWindowDimensions from '@/hooks/useWindowDimensions';
 import { FormatedChartData } from '@/types/chart';
 import { useTooltipStore } from 'global-stores/useTooltipStore';
 import { useEffect } from 'react';
@@ -22,6 +23,7 @@ type Props = {
 
 const Chart: React.FC<Props> = ({ onDotPositionChange, data }) => {
   const store = useTooltipStore(s => s.setData);
+  const { width: windowWidth } = useWindowDimensions();
 
   useEffect(() => {
     store(data[data.length - 1]);
@@ -33,12 +35,14 @@ const Chart: React.FC<Props> = ({ onDotPositionChange, data }) => {
 
   return (
     <>
-      <ResponsiveContainer width="99%" height={300}>
+      <div style={{ minHeight: 300 }}>
         <AreaChart
           data={data}
           margin={{ left: 0, right: 0 }}
           onClick={onDotPositionChange}
           startAngle={3}
+          width={windowWidth}
+          height={300}
         >
           <defs>
             <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
@@ -63,7 +67,7 @@ const Chart: React.FC<Props> = ({ onDotPositionChange, data }) => {
           />
           <YAxis hide domain={['dataMin', 'dataMax']} />
         </AreaChart>
-      </ResponsiveContainer>
+      </div>
     </>
   );
 };
