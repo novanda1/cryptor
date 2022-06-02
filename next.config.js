@@ -1,7 +1,7 @@
 module.exports = {
   basePath: '',
   images: {
-    domains: ['images.unsplash.com', 'assets.coingecko.com'],
+    domains: ['images.unsplash.com', 'assets.coingecko.com', 'github.githubassets.com'],
   },
   async redirects() {
     return [
@@ -10,6 +10,6 @@ module.exports = {
         destination: '/api',
         permanent: true,
       },
-    ]
+    ];
   },
 };
