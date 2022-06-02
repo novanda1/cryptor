@@ -1,5 +1,4 @@
 import { CurrentPosition } from '@/types/position';
-import dayjs from 'dayjs';
 import { useTooltipStore } from 'global-stores/useTooltipStore';
 
 type Props = {
@@ -8,6 +7,7 @@ type Props = {
 
 const ChartDotInfo: React.FC<Props> = ({ current }) => {
   const tooltip = useTooltipStore();
+  const date = tooltip.getFormattedDate(tooltip.unix);
 
   return (
     <div className="relative w-full h-1 flex justify-center">
@@ -23,9 +23,7 @@ const ChartDotInfo: React.FC<Props> = ({ current }) => {
           <div className="font-medium">
             {/* <span>$1.01 (10.06%)</span> */}
             {/* <span className="text-gray-800 ml-2">All Time</span> */}
-            <span className="text-gray-800 ml-2">
-              {dayjs(current.unix).format('MMM, D YYYY: HH:mm')}
-            </span>
+            <span className="text-gray-800 ml-2">{date}</span>
           </div>
         </div>
       </div>
