@@ -19,7 +19,7 @@ const Category: React.FC<RouteComponentProps> = ({ match: { params } }: any) => 
   const { data: categories } = useCategories();
   const current = categories && categories.filter(c => c.id === params.id)[0];
 
-  const { data: coins } = useCoinsByCategoryId(params.id);
+  const { data: coins, isLoading } = useCoinsByCategoryId(params.id);
 
   return (
     <IonPage>
@@ -36,12 +36,17 @@ const Category: React.FC<RouteComponentProps> = ({ match: { params } }: any) => 
             <PageTitle>👋 {current?.name}</PageTitle>
             <p className="">{current?.content}</p>
 
-            <span className="text-sm font-bold block mt-6">In this list</span>
-            <span className="text-xs text-gray-600">
-              {coins?.length > 1 ? coins?.length + ' coins' : coins?.length + ' coin'}
-            </span>
+            {isLoading && 'Loading...'}
+            {coins && (
+              <>
+                <span className="text-sm font-bold block mt-6">In this list</span>
+                <span className="text-xs text-gray-600">
+                  {coins?.length > 1 ? coins?.length + ' coins' : coins?.length + ' coin'}
+                </span>
 
-            <div className="mt-4">{coins && <CoinList coins={coins} border="border-t" />}</div>
+                <div className="mt-4">{coins && <CoinList coins={coins} border="border-t" />}</div>
+              </>
+            )}
           </PX>
         </Container>
       </IonContent>
