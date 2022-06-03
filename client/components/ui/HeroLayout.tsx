@@ -24,8 +24,8 @@ const HeroLayout: React.FC = () => {
         <div className="mt-10 text-center">
           <span className="text-sm">You have</span>
           <h4 className="mt-1">
-            <small className="inline-block transform -translate-y-4 mr-0.5">Rp</small>
-            <span className="text-2xl font-bold">500.000</span>
+            <small className="inline-block transform -translate-y-4 mr-0.5">$</small>
+            <span className="text-2xl font-bold">50.000</span>
           </h4>
         </div>
         <div className="relative w-full h-1 flex justify-center">
