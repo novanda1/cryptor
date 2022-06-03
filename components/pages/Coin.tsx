@@ -1,4 +1,3 @@
-import useChart from '@/hooks/useChart';
 import { FetchError } from '@/types/api';
 import { Coin } from '@/types/coin';
 import {
@@ -10,21 +9,15 @@ import {
   IonPage,
   IonToolbar,
 } from '@ionic/react';
+import { analyticsOutline, cashOutline, earOutline, shieldOutline } from 'ionicons/icons';
 import Image from 'next/image';
 import { RouteComponentProps } from 'react-router-dom';
+import formatUsd from 'utils/formatUsd';
 import useCoin from '../../hooks/useCoin';
 import styles from '../ui/Border.module.css';
 import ChartLayout from '../ui/ChartLayout';
 import Container from '../ui/Container';
 import SectionTitle from '../ui/SectionTitlte';
-import {
-  cashOutline,
-  pulseOutline,
-  analyticsOutline,
-  earOutline,
-  shieldOutline,
-} from 'ionicons/icons';
-import formatUsd from 'utils/formatUsd';
 
 const CoinHeading: React.FC<{ coin: Coin & FetchError }> = ({ coin }) => {
   return (
@@ -61,8 +54,6 @@ const Coin: React.FC<RouteComponentProps<{ id: string }>> = ({
     market_data: true,
     sparkline: false,
   });
-
-  console.log('coin', coin);
 
   return (
     <IonPage>

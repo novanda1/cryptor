@@ -38,9 +38,10 @@ const ChartLayout: React.FC<Props> = ({ data, heading, coinName }) => {
   const [current, setCurrent] = useState<CurrentPosition>({ isUp: true, percent: 10, value: 100 });
 
   const onDotPositionChange = (state: CategoricalChartState) => {
-    const value = state.activePayload[0].payload;
+    const value = state?.activePayload[0].payload;
 
-    setCurrent({ value: value.price, isUp: false, percent: 13, unix: value.unix });
+    if (value?.price && value?.unix)
+      setCurrent({ value: value.price, isUp: false, percent: 13, unix: value.unix });
   };
 
   useEffect(() => {
