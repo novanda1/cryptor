@@ -16,7 +16,6 @@ const CoinCategories: React.FC<Props> = () => {
   useEffect(() => {
     const fetchEmojis = async () => {
       const e = await randomEmoji();
-      console.log('e', e);
       setEmojis(e);
     };
 
