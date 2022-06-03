@@ -1,6 +1,7 @@
 import { IonRouterLink } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 import useCategories from '../../hooks/useCategories';
+import styles from './Scrollbar.module.css';
 
 type Props = {};
 
@@ -10,7 +11,10 @@ const CoinCategories: React.FC<Props> = () => {
 
   return (
     <div className="overflow-x-auto overflow-y-hidden -mx-4 my-10 pl-4 py-1">
-      <div className="flex flex-wrap -m-2" style={{ width: '900%' }}>
+      <div
+        className={'flex flex-wrap -m-2 scrol' + styles.hideScrollbar}
+        style={{ width: categories?.length > 1 ? '900%' : 0 }}
+      >
         {categories &&
           categories.map(cat => {
             return (
