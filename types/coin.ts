@@ -349,3 +349,41 @@ export interface TrendingItem {
   price_btc: number;
   score: number;
 }
+
+// from /search
+export interface SearchResult {
+  coins:      Coin[];
+  exchanges:  SearchResultExchange[];
+  icos:       any[];
+  categories: SearchResultCategory[];
+  nfts:       SearchResultNft[];
+}
+
+export interface SearchResultCategory {
+  id:   number;
+  name: string;
+}
+
+export interface SearchResultCoin {
+  id:              string;
+  name:            string;
+  symbol:          string;
+  market_cap_rank: number;
+  thumb:           string;
+  large:           string;
+}
+
+export interface SearchResultExchange {
+  id:          string;
+  name:        string;
+  market_type: string;
+  thumb:       string;
+  large:       string;
+}
+
+export interface SearchResultNft {
+  id:     null | string;
+  name:   string;
+  symbol: string;
+  thumb:  string;
+}
