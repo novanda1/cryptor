@@ -10,7 +10,7 @@ function TooltipContent({ payload }: any) {
   const store = useTooltipStore(s => s.setData);
 
   useEffect(() => {
-    payload[0] && store(payload[0].payload);
+    payload?.length && store(payload[0].payload);
   }, [payload, store]);
 
   return <div> </div>;
